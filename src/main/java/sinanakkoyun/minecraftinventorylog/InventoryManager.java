@@ -24,7 +24,7 @@ public class InventoryManager {
             return null;
         }
 
-        Inventory inv = Bukkit.createInventory(null, 54, StyleConstants.dateColor + "[" + times.indexOf(timestamp) + "] " + StyleConstants.dateFormat.format(new Date(timestamp)));
+        Inventory inv = Bukkit.createInventory(null, 54, StyleConstants.indexColor + "[" + times.indexOf(timestamp) + "] " + StyleConstants.dateColor + StyleConstants.dateFormat.format(new Date(timestamp)));
 
         if(plugin.getConfig().get(id.toString()) + "." + timestamp == null) {
             return null;
