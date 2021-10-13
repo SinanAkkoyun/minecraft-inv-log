@@ -6,7 +6,7 @@ authors: [ SinanAkkoyun ]
 
 # Replace "kit" with the name of your command.
 commands:
-  restore:
+  invrestore:
     description: Restores a previous inventory of a player.
-    usage: /restore <player_name> <list | index>
+    usage: /invrestore <player_name> <list | index>
     permission: sinanakkoyun.inventoryrestore

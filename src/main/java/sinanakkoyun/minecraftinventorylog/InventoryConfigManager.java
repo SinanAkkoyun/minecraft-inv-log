@@ -18,12 +18,12 @@ public class InventoryConfigManager {
             if(times != null && times.size() > ConfigConstants.maxInventoriesSaved - 1) {
                 plugin.getConfig().set(id.toString() + "." + times.get(0), null);
             }
-            if(times.size() > 0) {
-                if (ItemStackUtil.checkIfEqual(InventoryManager.getContents(plugin, times.get(times.size() - 1), player.getUniqueId()), player.getInventory().getContents())) {
+            /*if(times.size() > 0) {
+                if (ItemStackUtil.checkIfEqual(player.getInventory().getContents(), InventoryManager.getContents(plugin, times.get(times.size() - 1), id))) {
                     plugin.saveConfig();
                     return;
                 }
-            }
+            }*/
 
             plugin.getConfig().set(id.toString() + "." + new Date().getTime() + ".items", player.getInventory().getContents());
             plugin.saveConfig();

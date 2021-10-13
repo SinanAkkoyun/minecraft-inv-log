@@ -15,7 +15,7 @@ public final class MinecraftInventoryLog extends JavaPlugin {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         getServer().getPluginManager().registerEvents(new GUIListener(this), this);
-        this.getCommand("restore").setExecutor(new RestoreCommand(this));
+        this.getCommand("invrestore").setExecutor(new RestoreCommand(this));
 
         //this.getConfig().options().copyDefaults();
         if (!(new File(this.getDataFolder(), "config.yml")).exists()) {
@@ -24,7 +24,7 @@ public final class MinecraftInventoryLog extends JavaPlugin {
 
         ItemStackConstants.init();
 
-        System.out.println(ChatColor.GREEN + "[Deployed] " + ChatColor.AQUA + "Sinan's Inventory Backup System");
+        // System.out.println(ChatColor.GREEN + "[Deployed] " + ChatColor.AQUA + "Sinan's Inventory Backup System");
     }
 
     @Override
@@ -37,6 +37,6 @@ public final class MinecraftInventoryLog extends JavaPlugin {
 
         this.saveConfig();
 
-        System.out.println(ChatColor.RED + "[Shutdown] " + ChatColor.AQUA + "Sinan's Inventory Backup System");
+        // System.out.println(ChatColor.RED + "[Shutdown] " + ChatColor.AQUA + "Sinan's Inventory Backup System");
     }
 }

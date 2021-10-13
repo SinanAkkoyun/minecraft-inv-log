@@ -15,7 +15,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        InventoryConfigManager.saveInventory(plugin, e.getPlayer());
+        //InventoryConfigManager.saveInventory(plugin, e.getPlayer());
     }
 
     @EventHandler
