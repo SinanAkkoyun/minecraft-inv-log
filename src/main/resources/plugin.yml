@@ -9,4 +9,4 @@ commands:
   restore:
     description: Restores a previous inventory of a player.
     usage: /restore <player_name> <list | index>
-    permission: soulsmp.restore
+    permission: sinanakkoyun.inventoryrestore
