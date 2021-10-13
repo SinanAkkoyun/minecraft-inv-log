@@ -3,6 +3,7 @@ package sinanakkoyun.minecraftinventorylog;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
 import sinanakkoyun.minecraftinventorylog.constants.ConfigConstants;
+import sinanakkoyun.minecraftinventorylog.itemstack.ItemStackUtil;
 
 import java.util.*;
 
@@ -18,7 +19,7 @@ public class InventoryConfigManager {
                 plugin.getConfig().set(id.toString() + "." + times.get(0), null);
             }
             if(times.size() > 0) {
-                if (InventoryManager.getContents(plugin, times.get(times.size() - 1), player.getUniqueId()).equals(player.getInventory().getContents())) {
+                if (ItemStackUtil.checkIfEqual(InventoryManager.getContents(plugin, times.get(times.size() - 1), player.getUniqueId()), player.getInventory().getContents())) {
                     plugin.saveConfig();
                     return;
                 }
