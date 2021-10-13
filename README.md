@@ -12,6 +12,7 @@ With this plugin installed, you can simply /restore <player_name> and a GUI pops
 
 
 Download JAR: https://github.com/SinanAkkoyun/minecraft-inv-log/releases/tag/1.17.1
+
 Permissions: sinanakkoyun.inventoryrestore
 
 All Rights Reserved by Sinan Akkoyun.
