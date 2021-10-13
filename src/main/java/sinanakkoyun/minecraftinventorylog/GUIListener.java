@@ -49,8 +49,6 @@ public class GUIListener implements Listener {
 
                     if (times != null && times.size() > 0 && times.contains(time)) {
                         int nextTimeIndex = MathUtil.clamp(times.indexOf(time) + 1, 0, times.size() - 1);
-                        p.sendMessage("index of current " + time + ": " + times.indexOf(time));
-                        p.sendMessage("index of next " + times.get(nextTimeIndex) + ": " + nextTimeIndex);
                         p.openInventory(InventoryManager.createInventoryRestoreView(plugin, times.get(nextTimeIndex), id));
                     } else {
                         p.sendMessage(StyleConstants.errorColor + "Inventory is not up to date or config.yml has been altered while operating.");
@@ -76,8 +74,6 @@ public class GUIListener implements Listener {
 
                     if (times != null && times.size() > 0 && times.contains(time)) {
                         int previousTimeIndex = MathUtil.clamp(times.indexOf(time) - 1, 0, times.size() - 1);
-                        p.sendMessage("index of current " + time + ": " + times.indexOf(time));
-                        p.sendMessage("index of previous " + times.get(previousTimeIndex) + ": " + previousTimeIndex);
                         p.openInventory(InventoryManager.createInventoryRestoreView(plugin, times.get(previousTimeIndex), id));
                     } else {
                         p.sendMessage(StyleConstants.errorColor + "Inventory is not up to date or config.yml has been altered while operating.");
