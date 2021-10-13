@@ -15,6 +15,6 @@ public class ItemStackUtil {
             }
         }
 
-        return mismatch > 0;
+        return !(mismatch > 0);
     }
 }
