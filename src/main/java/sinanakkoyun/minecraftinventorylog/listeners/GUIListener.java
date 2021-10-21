@@ -1,4 +1,4 @@
-package sinanakkoyun.minecraftinventorylog;
+package sinanakkoyun.minecraftinventorylog.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,13 +9,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import sinanakkoyun.minecraftinventorylog.util.InventoryManager;
+import sinanakkoyun.minecraftinventorylog.MinecraftInventoryLog;
 import sinanakkoyun.minecraftinventorylog.constants.ItemStackConstants;
 import sinanakkoyun.minecraftinventorylog.constants.StyleConstants;
 import sinanakkoyun.minecraftinventorylog.math.MathUtil;
+import sinanakkoyun.minecraftinventorylog.types.InventoryEntry;
 
-import javax.swing.text.Style;
 import java.util.Arrays;
-import java.util.List;
 import java.util.UUID;
 
 public class GUIListener implements Listener {
@@ -32,26 +33,27 @@ public class GUIListener implements Listener {
             return;
 
         if(itemStack.equals(ItemStackConstants.cancel)) {
+            event.setCancelled(true);
             event.getWhoClicked().sendMessage(StyleConstants.errorColor + "Restore got cancelled.");
             event.getWhoClicked().closeInventory();
         }
 
         if(itemStack.equals(ItemStackConstants.next)) {
+            event.setCancelled(true);
             try {
                 HumanEntity p = event.getWhoClicked();
                 Inventory clickedInv = event.getClickedInventory();
                 ItemStack playerHead = clickedInv.getItem(InventoryManager.playerHeadSlot);
 
                 if(clickedInv != null && playerHead != null) {
-                    long time = ItemStackConstants.getTimeFromPlayerHead(playerHead);
+                    int index = ItemStackConstants.getIndexFromPlayerHead(playerHead);
                     UUID id = ItemStackConstants.getUUIDFromPlayerHead(playerHead);
-                    List<Long> times = InventoryConfigManager.getTimestampsOfPlayer(plugin, id);
 
-                    if (times != null && times.size() > 0 && times.contains(time)) {
-                        int nextTimeIndex = MathUtil.clamp(times.indexOf(time) + 1, 0, times.size() - 1);
-                        p.openInventory(InventoryManager.createInventoryRestoreView(plugin, times.get(nextTimeIndex), id));
+                    InventoryEntry entry = plugin.getLastInv(id, MathUtil.clamp(index - 1, 0, Integer.MAX_VALUE));
+                    if (entry != null) {
+                        p.openInventory(InventoryManager.createInventoryRestoreView(entry));
                     } else {
-                        p.sendMessage(StyleConstants.errorColor + "Inventory is not up to date or config.yml has been altered while operating.");
+                        //p.sendMessage(StyleConstants.errorColor + "No more inventories found in this direction.");
                     }
                 } else {
                     p.sendMessage(StyleConstants.errorColor + "Error. Either the inventory is null or the player head is not at the right spot in the inventory.");
@@ -62,21 +64,21 @@ public class GUIListener implements Listener {
         }
 
         if(itemStack.equals(ItemStackConstants.previous)) {
+            event.setCancelled(true);
             try {
                 HumanEntity p = event.getWhoClicked();
                 Inventory clickedInv = event.getClickedInventory();
                 ItemStack playerHead = clickedInv.getItem(InventoryManager.playerHeadSlot);
 
                 if(clickedInv != null && playerHead != null) {
-                    long time = ItemStackConstants.getTimeFromPlayerHead(playerHead);
+                    int index = ItemStackConstants.getIndexFromPlayerHead(playerHead);
                     UUID id = ItemStackConstants.getUUIDFromPlayerHead(playerHead);
-                    List<Long> times = InventoryConfigManager.getTimestampsOfPlayer(plugin, id);
 
-                    if (times != null && times.size() > 0 && times.contains(time)) {
-                        int previousTimeIndex = MathUtil.clamp(times.indexOf(time) - 1, 0, times.size() - 1);
-                        p.openInventory(InventoryManager.createInventoryRestoreView(plugin, times.get(previousTimeIndex), id));
+                    InventoryEntry entry = plugin.getLastInv(id, index + 1);
+                    if (entry != null) {
+                        p.openInventory(InventoryManager.createInventoryRestoreView(entry));
                     } else {
-                        p.sendMessage(StyleConstants.errorColor + "Inventory is not up to date or config.yml has been altered while operating.");
+                        //p.sendMessage(StyleConstants.errorColor + "No more inventories found in this direction.");
                     }
                 } else {
                     p.sendMessage(StyleConstants.errorColor + "Error. Either the inventory is null or the player head is not at the right spot in the inventory.");
@@ -87,6 +89,7 @@ public class GUIListener implements Listener {
         }
 
         if(itemStack.equals(ItemStackConstants.apply)) {
+            event.setCancelled(true);
             try {
                 Inventory clickedInv = event.getClickedInventory();
                 event.getWhoClicked().sendMessage(StyleConstants.questionColor + "Are you sure you want to clear the player's current inventory and want to restore the chosen one?");
@@ -97,6 +100,7 @@ public class GUIListener implements Listener {
         }
 
         if(itemStack.equals(ItemStackConstants.confirm)) {
+            event.setCancelled(true);
             try {
                 HumanEntity p = event.getWhoClicked();
                 Inventory clickedInv = event.getClickedInventory();

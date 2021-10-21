@@ -1,7 +1,8 @@
-package sinanakkoyun.minecraftinventorylog;
+package sinanakkoyun.minecraftinventorylog.util;
 
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
+import sinanakkoyun.minecraftinventorylog.MinecraftInventoryLog;
 import sinanakkoyun.minecraftinventorylog.constants.ConfigConstants;
 import sinanakkoyun.minecraftinventorylog.itemstack.ItemStackUtil;
 
@@ -12,21 +13,11 @@ public class InventoryConfigManager {
         UUID id = player.getUniqueId();
 
         if(!player.getInventory().isEmpty()) {
-            plugin.reloadConfig();
-
-            List<Long> times = InventoryConfigManager.getTimestampsOfPlayer(plugin, player.getUniqueId());
-            if(times != null && times.size() > ConfigConstants.maxInventoriesSaved - 1) {
-                plugin.getConfig().set(id.toString() + "." + times.get(0), null);
+            try {
+                plugin.logInv(player);
+            }catch(Exception e) {
+                e.printStackTrace();
             }
-            /*if(times.size() > 0) {
-                if (ItemStackUtil.checkIfEqual(player.getInventory().getContents(), InventoryManager.getContents(plugin, times.get(times.size() - 1), id))) {
-                    plugin.saveConfig();
-                    return;
-                }
-            }*/
-
-            plugin.getConfig().set(id.toString() + "." + new Date().getTime() + ".items", player.getInventory().getContents());
-            plugin.saveConfig();
         }
     }
 

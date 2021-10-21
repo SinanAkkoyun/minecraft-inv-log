@@ -8,7 +8,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -74,6 +73,20 @@ public class ItemStackConstants {
         return playerHead;
     }
 
+    public static ItemStack getPlayerHeadWithIndex(Player player, int index) {
+        ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD, 1);
+        SkullMeta meta = (SkullMeta) playerHead.getItemMeta();
+        meta.setDisplayName(player.getDisplayName());
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add(ChatColor.DARK_GRAY + player.getUniqueId().toString());
+        lore.add(ChatColor.DARK_GRAY + "" + index);
+        meta.setLore(lore);
+        meta.setOwningPlayer(player);
+        playerHead.setItemMeta(meta);
+
+        return playerHead;
+    }
+
     public static UUID getUUIDFromPlayerHead(ItemStack playerHead) {
         SkullMeta meta = (SkullMeta) playerHead.getItemMeta();
         return UUID.fromString(ChatColor.stripColor(meta.getLore().get(0)));
@@ -82,6 +95,10 @@ public class ItemStackConstants {
     public static long getTimeFromPlayerHead(ItemStack playerHead) {
         SkullMeta meta = (SkullMeta) playerHead.getItemMeta();
         return Long.parseLong(ChatColor.stripColor(meta.getLore().get(1)));
+    }
+    public static int getIndexFromPlayerHead(ItemStack playerHead) {
+        SkullMeta meta = (SkullMeta) playerHead.getItemMeta();
+        return Integer.parseInt(ChatColor.stripColor(meta.getLore().get(1)));
     }
 
     public static boolean isGUIItem(ItemStack itemStack) {

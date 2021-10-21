@@ -1,14 +1,16 @@
-package sinanakkoyun.minecraftinventorylog;
+package sinanakkoyun.minecraftinventorylog.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+import sinanakkoyun.minecraftinventorylog.util.InventoryManager;
+import sinanakkoyun.minecraftinventorylog.MinecraftInventoryLog;
 import sinanakkoyun.minecraftinventorylog.constants.StyleConstants;
+import sinanakkoyun.minecraftinventorylog.types.InventoryEntry;
 
-import java.lang.reflect.Array;
+import java.sql.SQLException;
 import java.util.*;
 
 public class RestoreCommand implements CommandExecutor {
@@ -28,21 +30,21 @@ public class RestoreCommand implements CommandExecutor {
                 return false;
             }
 
-            this.plugin.reloadConfig();
             UUID id = p.getUniqueId();
 
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 sender.sendMessage(StyleConstants.statementColor + "Opening last inv...");
 
-                List<Long> times = InventoryConfigManager.getTimestampsOfPlayer(plugin, id);
+                //sender.sendMessage(StyleConstants.statementColor + "" + times.size() + " inventories found!");
+                try {
+                    InventoryEntry entry = plugin.getLastInv(id);
+                    if(entry == null)
+                        sender.sendMessage("Null");
 
-                if (times != null && times.size() > 0) {
-                    sender.sendMessage(StyleConstants.statementColor + "" + times.size() + " inventories found!");
-                    player.openInventory(InventoryManager.createInventoryRestoreView(plugin, times.get(times.size() - 1), id));
-                } else {
-                    sender.sendMessage("No saved inventories found.");
-                    return false;
+                    player.openInventory(InventoryManager.createInventoryRestoreView(entry));
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
                 }
 
                 return true;
