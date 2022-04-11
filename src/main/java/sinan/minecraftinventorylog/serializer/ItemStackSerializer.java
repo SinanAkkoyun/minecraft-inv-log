@@ -1,4 +1,4 @@
-package sinanakkoyun.minecraftinventorylog.serializer;
+package sinan.minecraftinventorylog.serializer;
 
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;

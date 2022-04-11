@@ -1,16 +1,11 @@
-package sinanakkoyun.minecraftinventorylog.util;
+package sinan.minecraftinventorylog.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
-import sinanakkoyun.minecraftinventorylog.constants.ItemStackConstants;
-import sinanakkoyun.minecraftinventorylog.constants.StyleConstants;
-import sinanakkoyun.minecraftinventorylog.types.InventoryEntry;
-
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import sinan.minecraftinventorylog.constants.ItemStackConstants;
+import sinan.minecraftinventorylog.constants.StyleConstants;
+import sinan.minecraftinventorylog.types.InventoryEntry;
 
 public class InventoryManager {
     public static int cancelSlot = 45;
@@ -29,7 +24,7 @@ public class InventoryManager {
 
         inv.setItem(cancelSlot, ItemStackConstants.cancel);
         inv.setItem(previousSlot, ItemStackConstants.previous);
-        inv.setItem(playerHeadSlot, ItemStackConstants.getPlayerHeadWithIndex(Bukkit.getPlayer(invEntry.uuid), invEntry.index));
+        inv.setItem(playerHeadSlot, ItemStackConstants.getPlayerHeadWithIndex(Bukkit.getOfflinePlayer(invEntry.uuid), invEntry.index));
         inv.setItem(nextSlot, ItemStackConstants.next);
         inv.setItem(applySlot, ItemStackConstants.apply);
 

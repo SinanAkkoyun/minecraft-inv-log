@@ -1,4 +1,4 @@
-package sinanakkoyun.minecraftinventorylog.itemstack;
+package sinan.minecraftinventorylog.itemstack;
 
 import org.bukkit.inventory.ItemStack;
 

@@ -1,4 +1,4 @@
-package sinanakkoyun.minecraftinventorylog.constants;
+package sinan.minecraftinventorylog.constants;
 
 import org.bukkit.ChatColor;
 

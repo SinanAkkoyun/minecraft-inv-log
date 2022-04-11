@@ -1,12 +1,12 @@
 name: MinecraftInventoryLog
 version: '${project.version}'
-main: sinanakkoyun.minecraftinventorylog.MinecraftInventoryLog
+main: sinan.minecraftinventorylog.MinecraftInventoryLog
 api-version: 1.17
-authors: [ SinanAkkoyun ]
+authors: [ Sinan ]
 
 # Replace "kit" with the name of your command.
 commands:
   invrestore:
     description: Restores a previous inventory of a player.
     usage: /invrestore <player_name> <list | index>
-    permission: sinanakkoyun.inventoryrestore
+    permission: sinan.inventoryrestore

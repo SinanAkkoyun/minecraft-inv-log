@@ -1,4 +1,4 @@
-package sinanakkoyun.minecraftinventorylog.types;
+package sinan.minecraftinventorylog.types;
 
 import org.bukkit.inventory.ItemStack;
 

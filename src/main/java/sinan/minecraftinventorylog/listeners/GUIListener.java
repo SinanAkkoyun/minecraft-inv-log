@@ -1,4 +1,4 @@
-package sinanakkoyun.minecraftinventorylog.listeners;
+package sinan.minecraftinventorylog.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,12 +9,12 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import sinanakkoyun.minecraftinventorylog.util.InventoryManager;
-import sinanakkoyun.minecraftinventorylog.MinecraftInventoryLog;
-import sinanakkoyun.minecraftinventorylog.constants.ItemStackConstants;
-import sinanakkoyun.minecraftinventorylog.constants.StyleConstants;
-import sinanakkoyun.minecraftinventorylog.math.MathUtil;
-import sinanakkoyun.minecraftinventorylog.types.InventoryEntry;
+import sinan.minecraftinventorylog.MinecraftInventoryLog;
+import sinan.minecraftinventorylog.constants.ItemStackConstants;
+import sinan.minecraftinventorylog.constants.StyleConstants;
+import sinan.minecraftinventorylog.math.MathUtil;
+import sinan.minecraftinventorylog.types.InventoryEntry;
+import sinan.minecraftinventorylog.util.InventoryManager;
 
 import java.util.Arrays;
 import java.util.UUID;

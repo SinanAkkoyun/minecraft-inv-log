@@ -1,4 +1,4 @@
-package sinanakkoyun.minecraftinventorylog.math;
+package sinan.minecraftinventorylog.math;
 
 public class MathUtil {
     public static int clamp(int a, int min, int max) {

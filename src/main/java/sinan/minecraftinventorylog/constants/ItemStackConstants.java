@@ -1,7 +1,8 @@
-package sinanakkoyun.minecraftinventorylog.constants;
+package sinan.minecraftinventorylog.constants;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -77,6 +78,19 @@ public class ItemStackConstants {
         ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD, 1);
         SkullMeta meta = (SkullMeta) playerHead.getItemMeta();
         meta.setDisplayName(player.getDisplayName());
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add(ChatColor.DARK_GRAY + player.getUniqueId().toString());
+        lore.add(ChatColor.DARK_GRAY + "" + index);
+        meta.setLore(lore);
+        meta.setOwningPlayer(player);
+        playerHead.setItemMeta(meta);
+
+        return playerHead;
+    }
+    public static ItemStack getPlayerHeadWithIndex(OfflinePlayer player, int index) {
+        ItemStack playerHead = new ItemStack(Material.PLAYER_HEAD, 1);
+        SkullMeta meta = (SkullMeta) playerHead.getItemMeta();
+        meta.setDisplayName(player.getName());
         ArrayList<String> lore = new ArrayList<>();
         lore.add(ChatColor.DARK_GRAY + player.getUniqueId().toString());
         lore.add(ChatColor.DARK_GRAY + "" + index);

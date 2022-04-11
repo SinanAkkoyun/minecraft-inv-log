@@ -1,4 +1,4 @@
-package sinanakkoyun.minecraftinventorylog.mysql;
+package sinan.minecraftinventorylog.mysql;
 
 import org.bukkit.Bukkit;
 

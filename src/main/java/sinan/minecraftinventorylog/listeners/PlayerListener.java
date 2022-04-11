@@ -1,12 +1,12 @@
-package sinanakkoyun.minecraftinventorylog.listeners;
+package sinan.minecraftinventorylog.listeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import sinanakkoyun.minecraftinventorylog.util.InventoryConfigManager;
-import sinanakkoyun.minecraftinventorylog.MinecraftInventoryLog;
+import sinan.minecraftinventorylog.MinecraftInventoryLog;
+import sinan.minecraftinventorylog.util.InventoryConfigManager;
 
 public class PlayerListener implements Listener {
     public MinecraftInventoryLog plugin;

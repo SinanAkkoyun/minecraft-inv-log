@@ -1,14 +1,14 @@
-package sinanakkoyun.minecraftinventorylog.commands;
+package sinan.minecraftinventorylog.commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import sinanakkoyun.minecraftinventorylog.util.InventoryManager;
-import sinanakkoyun.minecraftinventorylog.MinecraftInventoryLog;
-import sinanakkoyun.minecraftinventorylog.constants.StyleConstants;
-import sinanakkoyun.minecraftinventorylog.types.InventoryEntry;
+import sinan.minecraftinventorylog.MinecraftInventoryLog;
+import sinan.minecraftinventorylog.constants.StyleConstants;
+import sinan.minecraftinventorylog.types.InventoryEntry;
+import sinan.minecraftinventorylog.util.InventoryManager;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -23,14 +23,21 @@ public class RestoreCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(args.length > 0) {
-            Player p = Bukkit.getPlayer(args[0]);
+            UUID id = null;
 
-            if(p == null) {
-                sender.sendMessage("Player " + args[0] + " not online.");
-                return false;
+            if(Bukkit.getPlayer(args[0]) == null) {
+                if(Bukkit.getOfflinePlayerIfCached(args[0]) != null)
+                    id = Bukkit.getOfflinePlayerIfCached(args[0]).getUniqueId();
+                else
+                    sender.sendMessage(StyleConstants.statementColor + "Player not in cache.");
+            } else {
+                id = Bukkit.getPlayer(args[0]).getUniqueId();
             }
 
-            UUID id = p.getUniqueId();
+            if(id == null) {
+                sender.sendMessage("Player " + args[0] + " not found.");
+                return false;
+            }
 
             if (sender instanceof Player) {
                 Player player = (Player) sender;

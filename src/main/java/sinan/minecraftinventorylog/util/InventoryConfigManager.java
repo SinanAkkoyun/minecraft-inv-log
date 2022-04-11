@@ -1,10 +1,7 @@
-package sinanakkoyun.minecraftinventorylog.util;
+package sinan.minecraftinventorylog.util;
 
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Zombie;
-import sinanakkoyun.minecraftinventorylog.MinecraftInventoryLog;
-import sinanakkoyun.minecraftinventorylog.constants.ConfigConstants;
-import sinanakkoyun.minecraftinventorylog.itemstack.ItemStackUtil;
+import sinan.minecraftinventorylog.MinecraftInventoryLog;
 
 import java.util.*;
 

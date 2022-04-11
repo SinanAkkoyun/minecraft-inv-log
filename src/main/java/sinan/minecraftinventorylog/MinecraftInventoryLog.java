@@ -1,4 +1,4 @@
-package sinanakkoyun.minecraftinventorylog;
+package sinan.minecraftinventorylog;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -6,16 +6,15 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
-import sinanakkoyun.minecraftinventorylog.commands.RestoreCommand;
-import sinanakkoyun.minecraftinventorylog.constants.ItemStackConstants;
-import sinanakkoyun.minecraftinventorylog.listeners.GUIListener;
-import sinanakkoyun.minecraftinventorylog.listeners.PlayerListener;
-import sinanakkoyun.minecraftinventorylog.mysql.MySQL;
-import sinanakkoyun.minecraftinventorylog.serializer.ItemStackSerializer;
-import sinanakkoyun.minecraftinventorylog.types.InventoryEntry;
-import sinanakkoyun.minecraftinventorylog.util.InventoryConfigManager;
+import sinan.minecraftinventorylog.serializer.ItemStackSerializer;
+import sinan.minecraftinventorylog.commands.RestoreCommand;
+import sinan.minecraftinventorylog.constants.ItemStackConstants;
+import sinan.minecraftinventorylog.listeners.GUIListener;
+import sinan.minecraftinventorylog.listeners.PlayerListener;
+import sinan.minecraftinventorylog.mysql.MySQL;
+import sinan.minecraftinventorylog.types.InventoryEntry;
+import sinan.minecraftinventorylog.util.InventoryConfigManager;
 
-import java.io.File;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
